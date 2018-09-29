@@ -1,11 +1,12 @@
 package com.app;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
 
-    private static Set<String> hashSet = new TreeSet<>();
+    private static List<String> list = new ArrayList<>();
 
     public static void main(String[] args) {
         // first - array index, second - element index
@@ -18,7 +19,7 @@ public class Main {
         // i - array index
         print(a, 0, "", 4);
 
-        Set<String> expected = new TreeSet<>();
+        List<String> expected = new ArrayList<>();
         expected.add("111");
         expected.add("112");
         expected.add("113");
@@ -99,17 +100,19 @@ public class Main {
         expected.add("443");
         expected.add("444");
 
-        // System.out.println(hashSet.equals(expected));
+        Collections.sort(list);
+        System.out.println(list.equals(expected));
     }
 
     static void print(int[][] a, int i, String buffer, final int n) {
         for (int j = 0; j < n; j++) { // iterate over elements
             if (i < a.length) {
                 print(a, i + 1, buffer + a[i][j], n);
-            } else {
-                System.out.println(buffer);
-                hashSet.add(buffer);
             }
+        }
+        if (i == a.length) {
+            System.out.println(buffer);
+            list.add(buffer);
         }
     }
 }
